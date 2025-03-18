@@ -62,4 +62,47 @@ public class PracticeProblem {
 			return -1;
 		}
 	}
+
+	public static int getNumber(int line, String file){
+		BufferedReader rd = null;
+		String check ="";
+		int out = -1;
+		try{
+			rd = new BufferedReader((new FileReader(file)));
+			if (line <=3){
+				for (int i =0; i<line; i++){
+					if ((check=rd.readLine())!=null){
+						String[] breakr = check.split(" ");
+						out = Integer.parseInt(breakr[3]);
+					}
+				}
+			}
+		}
+		catch (IOException e){}
+
+		finally {
+			try {
+				if (rd!=null){
+					rd.close();
+				}
+			} catch (IOException e){}
+		}
+		return out;
+	}
+
+	public static void fileAppend(String output, String filename){
+		BufferedWriter bw= null;
+		try{
+			bw = new BufferedWriter(new FileWriter(filename, true));
+			bw.write(output);
+		}
+		catch (IOException e){}
+		finally{
+			try{
+				if (bw!=null){
+					bw.close();
+				}
+			}catch (IOException e){}
+		}
+	}
 }
